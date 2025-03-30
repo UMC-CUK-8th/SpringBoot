@@ -1,0 +1,353 @@
+<html>
+<head>
+<title>storevisit.sql</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+storevisit.sql</font>
+</center></td></tr></table>
+<pre><span class="s0">CREATE DATABASE IF NOT EXISTS </span><span class="s1">mydb</span><span class="s2">;</span>
+<span class="s0">use </span><span class="s1">mydb</span><span class="s2">;</span>
+
+
+<span class="s0">CREATE TABLE </span><span class="s1">`store` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`지역id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`store_name`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`store_loca`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`store_menu`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">50</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`store_review`	</span><span class="s0">text	NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`missions` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`지역id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`가게id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`visit`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">10</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`created_at`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`mission_point`	</span><span class="s0">bigint	NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`alarm` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`회원id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`created_at`	</span><span class="s0">datetime</span><span class="s2">(</span><span class="s3">6</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`dtype`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`title`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">30</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`body`	</span><span class="s0">text	NULL</span><span class="s2">,</span>
+	<span class="s1">`comfirmed_at`	</span><span class="s0">boolean	NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`location` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`location_name`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`store_count`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`updated_at`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`reviews` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL AUTO_INCREMENT</span><span class="s2">,</span>
+	<span class="s1">`회원id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`가게id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`지역id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`review`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">100</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`review_star`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`created_at`	</span><span class="s0">datetime</span><span class="s2">(</span><span class="s3">6</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`upload_at`	</span><span class="s0">datetime</span><span class="s2">(</span><span class="s3">6</span><span class="s2">)	</span><span class="s0">NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`members` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`user_id`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`user_pw`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`user_name`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`user_food`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`user_birth`	</span><span class="s0">bigint</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`user_address`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">30</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`status`	</span><span class="s0">varchar</span><span class="s2">(</span><span class="s3">20</span><span class="s2">)	</span><span class="s0">NULL</span><span class="s2">,</span>
+	<span class="s1">`inactive_date`	</span><span class="s0">datetime	NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`usermission` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`미션id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`지역id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`가게id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`회원id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`point`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`created_at`	</span><span class="s0">datetime	NULL</span><span class="s2">,</span>
+	<span class="s1">`is_completed`	</span><span class="s0">boolean	NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`locationbounusmission` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`회원id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`지역id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`mission_count`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`bonus_check`	</span><span class="s0">boolean	NULL</span><span class="s2">,</span>
+	<span class="s1">`bouns_point`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`gived_at`	</span><span class="s0">datetime	NULL</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE </span><span class="s1">`CopyOfmissions` </span><span class="s2">(</span>
+	<span class="s1">`id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`mission_count`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`point`	</span><span class="s0">bigint	NULL</span><span class="s2">,</span>
+	<span class="s1">`created_at`	</span><span class="s0">datetime	NULL</span><span class="s2">,</span>
+	<span class="s1">`id2`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`지역id`	</span><span class="s0">bigint	NOT NULL</span><span class="s2">,</span>
+	<span class="s1">`가게id`	</span><span class="s0">bigint	NOT NULL</span>
+<span class="s2">);</span>
+<span class="s0">ALTER TABLE </span><span class="s1">reviews</span>
+    <span class="s0">MODIFY COLUMN </span><span class="s1">id </span><span class="s0">BIGINT NOT NULL AUTO_INCREMENT</span><span class="s2">;</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`store` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_STORE` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span><span class="s2">,</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">);</span>
+<span class="s0">ALTER TABLE </span><span class="s1">`store` </span><span class="s0">ADD UNIQUE </span><span class="s2">(</span><span class="s1">`id`</span><span class="s2">);</span>
+
+
+<span class="s0">ALTER TABLE </span><span class="s1">`missions` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_MISSIONS` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span><span class="s2">,</span>
+	<span class="s1">`지역id`</span><span class="s2">,</span>
+	<span class="s1">`가게id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`alarm` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_ALARM` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span><span class="s2">,</span>
+	<span class="s1">`회원id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`location` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_LOCATION` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`reviews` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_REVIEWS` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span><span class="s2">,</span>
+	<span class="s1">`회원id`</span><span class="s2">,</span>
+	<span class="s1">`가게id`</span><span class="s2">,</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`members` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_MEMBERS` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`usermission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_USERMISSION` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span><span class="s2">,</span>
+	<span class="s1">`미션id`</span><span class="s2">,</span>
+	<span class="s1">`지역id`</span><span class="s2">,</span>
+	<span class="s1">`가게id`</span><span class="s2">,</span>
+	<span class="s1">`회원id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`locationbounusmission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_LOCATIONBOUNUSMISSION` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span><span class="s2">,</span>
+	<span class="s1">`회원id`</span><span class="s2">,</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`CopyOfmissions` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`PK_COPYOFMISSIONS` </span><span class="s0">PRIMARY KEY </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`store` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_location_TO_store_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`location` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+
+<span class="s0">ALTER TABLE </span><span class="s1">`missions` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_store_TO_missions_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`store` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`missions` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_store_TO_missions_2` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`가게id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`store` </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">);</span>
+
+
+<span class="s0">ALTER TABLE </span><span class="s1">`alarm` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_members_TO_alarm_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`회원id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`members` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`reviews` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_members_TO_reviews_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`회원id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`members` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`reviews` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_store_TO_reviews_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`가게id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`store` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`reviews` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_store_TO_reviews_2` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`store` </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`usermission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_missions_TO_usermission_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`미션id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`missions` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`usermission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_missions_TO_usermission_2` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`missions` </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`usermission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_missions_TO_usermission_3` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`가게id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`missions` </span><span class="s2">(</span>
+	<span class="s1">`가게id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`usermission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_members_TO_usermission_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`회원id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`members` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`locationbounusmission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_members_TO_locationbounusmission_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`회원id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`members` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">ALTER TABLE </span><span class="s1">`locationbounusmission` </span><span class="s0">ADD CONSTRAINT </span><span class="s1">`FK_location_TO_locationbounusmission_1` </span><span class="s0">FOREIGN KEY </span><span class="s2">(</span>
+	<span class="s1">`지역id`</span>
+<span class="s2">)</span>
+<span class="s0">REFERENCES </span><span class="s1">`location` </span><span class="s2">(</span>
+	<span class="s1">`id`</span>
+<span class="s2">);</span>
+
+<span class="s0">use </span><span class="s1">mydb</span><span class="s2">;</span>
+
+<span class="s0">select</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">visit </span><span class="s0">as </span><span class="s1">미션이름</span><span class="s2">,</span>
+    <span class="s1">um</span><span class="s2">.</span><span class="s1">created_at</span><span class="s2">,</span>
+    <span class="s1">um</span><span class="s2">.</span><span class="s1">point</span>
+<span class="s0">from </span><span class="s1">usermission </span><span class="s0">as </span><span class="s1">um</span>
+         <span class="s0">join </span><span class="s1">missions </span><span class="s0">as </span><span class="s1">m</span>
+              <span class="s0">on </span><span class="s1">um</span><span class="s2">.</span><span class="s1">미션id = m</span><span class="s2">.</span><span class="s1">id</span>
+                  <span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">지역id = m</span><span class="s2">.</span><span class="s1">지역id</span>
+                  <span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">가게id = m</span><span class="s2">.</span><span class="s1">가게id</span>
+<span class="s0">where </span><span class="s1">um</span><span class="s2">.</span><span class="s1">회원id = ?</span>
+  <span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">is_completed = </span><span class="s3">1</span>
+<span class="s0">order by </span><span class="s1">um</span><span class="s2">.</span><span class="s1">created_at </span><span class="s0">desc</span>
+<span class="s0">limit </span><span class="s3">10 </span><span class="s0">offset </span><span class="s3">0</span><span class="s2">;  </span><span class="s4">-- ← 페이지 1</span>
+
+<span class="s0">select</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">visit </span><span class="s0">as </span><span class="s1">미션이름</span><span class="s2">,</span>
+    <span class="s1">um</span><span class="s2">.</span><span class="s1">created_at</span><span class="s2">,</span>
+    <span class="s1">um</span><span class="s2">.</span><span class="s1">point</span>
+<span class="s0">from </span><span class="s1">usermission </span><span class="s0">as </span><span class="s1">um</span>
+         <span class="s0">join </span><span class="s1">missions </span><span class="s0">as </span><span class="s1">m</span>
+              <span class="s0">on </span><span class="s1">um</span><span class="s2">.</span><span class="s1">미션id = m</span><span class="s2">.</span><span class="s1">id</span>
+                  <span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">지역id = m</span><span class="s2">.</span><span class="s1">지역id</span>
+                  <span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">가게id = m</span><span class="s2">.</span><span class="s1">가게id</span>
+<span class="s0">where </span><span class="s1">um</span><span class="s2">.</span><span class="s1">회원id = ?</span>
+  <span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">is_completed = </span><span class="s3">0</span>
+<span class="s0">order by </span><span class="s1">um</span><span class="s2">.</span><span class="s1">created_at </span><span class="s0">desc</span>
+<span class="s0">limit </span><span class="s3">10 </span><span class="s0">offset </span><span class="s3">0</span><span class="s2">;  </span><span class="s4">-- ← 페이지 1</span>
+
+<span class="s0">select</span>
+    <span class="s1">re</span><span class="s2">.</span><span class="s1">review </span><span class="s0">as </span><span class="s1">리뷰내용</span><span class="s2">,</span>
+    <span class="s1">re</span><span class="s2">.</span><span class="s1">review_star </span><span class="s0">as </span><span class="s1">별점</span><span class="s2">,</span>
+    <span class="s1">re</span><span class="s2">.</span><span class="s1">created_at</span><span class="s2">,</span>
+    <span class="s1">st</span><span class="s2">.</span><span class="s1">store_name</span>
+<span class="s0">from </span><span class="s1">reviews </span><span class="s0">as </span><span class="s1">re</span>
+        <span class="s0">join </span><span class="s1">store </span><span class="s0">as </span><span class="s1">st</span>
+            <span class="s0">on </span><span class="s1">re</span><span class="s2">.</span><span class="s1">가게id = st</span><span class="s2">.</span><span class="s1">id</span>
+                <span class="s0">and </span><span class="s1">re</span><span class="s2">.</span><span class="s1">지역id = st</span><span class="s2">.</span><span class="s1">지역id</span>
+<span class="s0">where </span><span class="s1">re</span><span class="s2">.</span><span class="s1">회원id = ?</span><span class="s2">;</span>
+
+<span class="s0">insert into </span><span class="s1">reviews</span><span class="s2">(</span>
+                    <span class="s1">회원id</span><span class="s2">,</span>
+                    <span class="s1">가게id</span><span class="s2">,</span>
+                    <span class="s1">지역id</span><span class="s2">,</span>
+                    <span class="s1">review</span><span class="s2">,</span>
+                    <span class="s1">review_star</span><span class="s2">,</span>
+                    <span class="s1">created_at</span><span class="s2">,</span>
+                    <span class="s1">upload_at</span>
+<span class="s2">) </span><span class="s0">values</span><span class="s2">(</span>
+        <span class="s1">?</span><span class="s2">,</span><span class="s1">?</span><span class="s2">,</span><span class="s1">?</span><span class="s2">,</span><span class="s1">?</span><span class="s2">,</span><span class="s1">?</span><span class="s2">,</span><span class="s1">now</span><span class="s2">(),</span><span class="s1">now</span><span class="s2">()</span>
+        <span class="s2">);</span>
+
+<span class="s0">select</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">id</span><span class="s2">,</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">visit </span><span class="s0">as </span><span class="s1">미션이름</span><span class="s2">,</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">mission_point </span><span class="s0">as </span><span class="s1">포인트</span><span class="s2">,</span>
+    <span class="s0">count</span><span class="s2">(</span><span class="s1">um</span><span class="s2">.</span><span class="s1">id</span><span class="s2">) </span><span class="s0">as </span><span class="s1">달성미션수</span>
+<span class="s0">from </span><span class="s1">missions </span><span class="s0">as </span><span class="s1">m</span>
+<span class="s0">left join </span><span class="s1">usermission </span><span class="s0">as </span><span class="s1">um</span>
+    <span class="s0">on </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id = um</span><span class="s2">.</span><span class="s1">미션id</span>
+    <span class="s0">and </span><span class="s1">m</span><span class="s2">.</span><span class="s1">지역id = um</span><span class="s2">.</span><span class="s1">지역id</span>
+    <span class="s0">and </span><span class="s1">m</span><span class="s2">.</span><span class="s1">가게id = um</span><span class="s2">.</span><span class="s1">가게id</span>
+<span class="s0">where </span><span class="s1">m</span><span class="s2">.</span><span class="s1">지역id = ?</span>
+<span class="s0">group by </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id</span><span class="s2">,</span><span class="s1">m</span><span class="s2">.</span><span class="s1">visit</span><span class="s2">,</span><span class="s1">m</span><span class="s2">.</span><span class="s1">mission_point</span>
+<span class="s0">order by </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id </span><span class="s0">desc</span>
+<span class="s0">limit </span><span class="s3">10 </span><span class="s0">offset </span><span class="s3">0</span><span class="s2">;</span>
+
+
+<span class="s0">SHOW CREATE TABLE </span><span class="s1">reviews</span><span class="s2">;</span>
+
+
+<span class="s0">select</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">user_name </span><span class="s0">as </span><span class="s1">이름</span><span class="s2">,</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">user_id </span><span class="s0">as </span><span class="s1">아아디</span><span class="s2">,</span>
+    <span class="s0">coalesce</span><span class="s2">(</span><span class="s1">sum</span><span class="s2">(</span><span class="s1">um</span><span class="s2">.</span><span class="s1">point</span><span class="s2">),</span><span class="s3">0</span><span class="s2">) </span><span class="s0">as </span><span class="s1">누적포인트</span>
+
+<span class="s0">from </span><span class="s1">members </span><span class="s0">as </span><span class="s1">m</span>
+<span class="s0">left join </span><span class="s1">usermission </span><span class="s0">as </span><span class="s1">um</span>
+    <span class="s0">on </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id = um</span><span class="s2">.</span><span class="s1">회원id </span><span class="s0">and </span><span class="s1">um</span><span class="s2">.</span><span class="s1">is_completed = </span><span class="s3">1</span>
+<span class="s0">where </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id = ?</span>
+<span class="s0">group by </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id</span><span class="s2">,</span><span class="s1">m</span><span class="s2">.</span><span class="s1">user_name</span><span class="s2">, </span><span class="s1">m</span><span class="s2">.</span><span class="s1">user_id</span><span class="s2">;</span>
+
+<span class="s0">select</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">user_name </span><span class="s0">as </span><span class="s1">이름</span><span class="s2">,</span>
+    <span class="s1">m</span><span class="s2">.</span><span class="s1">user_id </span><span class="s0">as </span><span class="s1">아아디</span><span class="s2">,</span>
+    <span class="s1">sum</span><span class="s2">(</span><span class="s1">um</span><span class="s2">.</span><span class="s1">point</span><span class="s2">) </span><span class="s0">as </span><span class="s1">누적포인트</span>
+
+<span class="s0">from </span><span class="s1">members </span><span class="s0">as </span><span class="s1">m</span>
+         <span class="s0">left join </span><span class="s1">usermission </span><span class="s0">as </span><span class="s1">um</span>
+                   <span class="s0">on </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id = um</span><span class="s2">.</span><span class="s1">회원id</span>
+
+<span class="s0">where </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id = ?</span>
+<span class="s0">group by </span><span class="s1">m</span><span class="s2">.</span><span class="s1">id</span><span class="s2">,</span><span class="s1">m</span><span class="s2">.</span><span class="s1">user_name</span><span class="s2">, </span><span class="s1">m</span><span class="s2">.</span><span class="s1">user_id</span><span class="s2">;</span></pre>
+</body>
+</html>
