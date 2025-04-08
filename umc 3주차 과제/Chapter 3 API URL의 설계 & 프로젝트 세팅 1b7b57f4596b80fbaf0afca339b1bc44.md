@@ -1,7 +1,5 @@
 # Chapter 3. API URL의 설계 & 프로젝트 세팅
 
-## 
-
 ## 🎯 핵심 키워드
 
 ---
@@ -164,6 +162,12 @@ pathvariable vs requestparam
     3. 미션 목록 조회는  진행중/완료한 미션을 분류하여 보도록 GET을 두 번 사용하도록 했다.
     4. 미션 성공은 PATCH 메소드를 사용하여 매핑 테이블의 member-missions에 있는 status를 in_progress 에서 complete로 바꾸도록 했다.
     5. 회원가입은 POST 메소드를 사용하여 회원정보를 데이터베이스에 올린다. erd 상에 적어뒀던 내용들을 request body에 넣어 올리기로 했다.
+    
+    2차 수정안
+    
+    ![image.png](image%202.png)
+    
+    json 파일의 양식은 “키”:”값”인데, 적을 때  “키”=”값” 형태로 적어 문제가 있었습니다. 이를 수정했습니다.
     
 
 ## ⚡ 트러블 슈팅
