@@ -1,0 +1,6 @@
+﻿이름,HTTP 메서드,API Path,설명,구현 여부,메인 반영,프론트연동,담당자
+홈화면,Get,/home,진행 가능한 미션 목록과 진행완료한 미션 개수 표시,진행 중,No,No,은정 조
+가게 리뷰 작성,POST,/mypage/reviews,"진행 완료한 가게 한정 리뷰(제목, 내용, 사진) 작성",진행 중,No,No,은정 조
+진행중인 미션 목록조회,Get,/missions,유저가 진행 가능한 미션 목록 표시,진행 중,No,No,은정 조
+"미션 성공 누르기 ",POST,/missions/{missionId}/success,진행 가능한 미션 한정 미션 성공 요청,진행 중,No,No,은정 조
+회원 가입,POST,/users/signup,유저의 정보로 회원 가입,완료,Yes,No,은정 조
