@@ -15,12 +15,16 @@ import java.util.List;
 public class Store extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, columnDefinition = "BIGINT")
     private Long id;
 
+    @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(nullable = false, length = 150)
     private String address;
 
+    @Column(nullable = false)
     private Float score;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -17,12 +17,16 @@ import java.util.List;
 public class Mission extends BaseEntity {
 
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, columnDefinition = "BIGINT")
     private Long id;
 
+    @Column(nullable = false)
     private Integer reward;
 
+    @Column(nullable = false, columnDefinition = "DATETIME")
     private LocalDate deadLine;
 
+    @Column(nullable = false)
     private String missionSpec;
 
     @ManyToOne(fetch = FetchType.LAZY)

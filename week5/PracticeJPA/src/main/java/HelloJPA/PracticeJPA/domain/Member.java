@@ -22,6 +22,7 @@ import java.util.List;
 public class Member extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, columnDefinition = "BIGINT")
     private Long id;
 
     @Column(nullable = false, length = 20)
@@ -44,11 +45,13 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private MemberStatus status;
 
+    @Column(nullable = false, columnDefinition = "DATETIME")
     private LocalDate inactiveDate;
 
     @Column(nullable = false, length = 50)
     private String email;
 
+    @Column(nullable = false, length = 10)
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
