@@ -2,7 +2,6 @@ package umc.springstart.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
-import umc.springstart.domain.FoodCategory;
 import umc.springstart.domain.Member;
 import umc.springstart.domain.Terms;
 import umc.springstart.domain.common.BaseEntity;
