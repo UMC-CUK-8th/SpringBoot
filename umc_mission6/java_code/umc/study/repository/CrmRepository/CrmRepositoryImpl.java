@@ -1,3 +1,4 @@
+/*
 package umc.study.repository.CrmRepository;
 
 import com.querydsl.core.BooleanBuilder;
@@ -21,16 +22,16 @@ public class CrmRepositoryImpl  {
     }
         // 오버라이드는 나중에 서비스단에서 사용한다. @Override
     public List<Crm> dynamicQueryWithBooleanBuilder(String name, Float score) {
-        BooleanBuilder predicate = new BooleanBuilder();
-
+    //crm은 사용하는 곳이 없음으로 조건절을 작성하지 않았습니다 그럼에서 이 클래스를 작성한 이유는
+        // crm클래스를 레포지토리에 등록함으로 다른 곳에서 사용할 수 있게하려하기 때문입니다.
 
 
         return jpaQueryFactory
                 .selectFrom(crm)
-                .where(predicate)
                 .fetch();
 
 
     }
 
 }
+*/

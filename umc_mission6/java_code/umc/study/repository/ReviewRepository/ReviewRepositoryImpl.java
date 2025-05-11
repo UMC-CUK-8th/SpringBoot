@@ -19,8 +19,7 @@ public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
     QMember member = QMember.member;
 
     //@Override
-    public List<ReviewDTO> secondpicture(String title, int score,
-                                                          String reply, String description) {
+    public List<ReviewDTO> secondpicture() {
 
         return jpaQueryFactory
                 .select(Projections.bean(ReviewDTO.class,

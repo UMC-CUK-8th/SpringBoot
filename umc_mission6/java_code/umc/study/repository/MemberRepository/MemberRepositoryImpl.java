@@ -16,27 +16,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberRepositoryImpl implements MemberRepositoryCustom{
     QUserMissionPointcounter ump = QUserMissionPointcounter.userMissionPointcounter;
-    QReview rv = QReview.review;
-    QCrm cm = QCrm.crm;
+    QReview reaview = QReview.review;
+    QCrm crm = QCrm.crm;
 
     private final JPAQueryFactory jpaQueryFactory;
     private final QMember member  = QMember.member;
 
-    public List<MemberDetailDTO> fourthpicture(String nickname, int phonenumber,
-                                               String email, int totalpoint, String reviewName, String crmTitle){
+    public List<MemberDetailDTO> fourthpicture(){
 
         return jpaQueryFactory.select(Projections.bean(MemberDetailDTO.class,
                         member.nickname,
                         member.phoneNumber,
                         member.email,
                         ump.totalPoint,
-                        rv.reviewId,
-                        cm.title  // DTO의 필드명과 다르면 as()로 맞춰야 함
+                        reaview.reviewId,
+                        crm.title  // DTO의 필드명과 다르면 as()로 맞춰야 함
                 ))
-                .from(member, cm, rv, ump)
+                .from(member)
                 .join(ump).on(member.phoneNumber.eq(ump.member.phoneNumber))
-                .join(rv).on(member.phoneNumber.eq(rv.member.phoneNumber))  // review 테이블과 JOIN
-                .join(cm).on(member.phoneNumber.eq(cm.member.phoneNumber))  // cmr 테이블과 JOIN
+                .join(reaview).on(member.phoneNumber.eq(reaview.member.phoneNumber))  // review 테이블과 JOIN
+                .join(crm).on(member.phoneNumber.eq(crm.member.phoneNumber))  // cmr 테이블과 JOIN
                 .fetch();
 
     }
