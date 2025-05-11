@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.springstart.domain.Review;
 import umc.springstart.domain.enums.MemberStatus;
+import umc.springstart.dto.ReviewDto;
+import umc.springstart.exception.ReviewNotFoundException;
 import umc.springstart.repository.ReviewRepository.ReviewRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,16 +20,14 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     private final ReviewRepository reviewRepository;
 
     @Override
-    public Optional<Review> findReview(Long id) {
-        return reviewRepository.findById(id);
+    public Review findReview(Long id) {
+        return reviewRepository.findById(id)
+                .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
     @Override
-    public List<Tuple> findReviewsByIdAndUserStatus(Long id, MemberStatus memberStatus) {
-        List<Tuple> filteredReviews = reviewRepository.findStoreIdAndMemberStatus(id, memberStatus);
+    public List<ReviewDto> findReviewsByIdAndUserStatus(Long id, MemberStatus memberStatus) {
 
-        filteredReviews.forEach(review -> System.out.println("Review: " + review));
-
-        return filteredReviews;
+        return reviewRepository.findStoreIdAndMemberStatus(id, memberStatus);
     }
 }
