@@ -9,7 +9,6 @@ import umc.study.domain.enums.Status;
 import umc.study.repository.MemberMissionRepository.MemberMissionRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,8 +20,8 @@ public class MemberMissionServiceImpl implements MemberMissionQueryService {
 
 
     @Override
-    public Optional<MemberMission> findMission(Long user_id) {
-        return memberMissionRepository.findById(user_id);
+    public List<MemberMission> findMission(Long user_id) {
+        return memberMissionRepository.findByUserId(user_id);
     }
 
     @Override
@@ -40,8 +39,7 @@ public class MemberMissionServiceImpl implements MemberMissionQueryService {
 
     @Override
     public Integer showCompletedMission(Long user_id) {
-        Integer CM=memberMissionRepository.showCompletedMissions(user_id);
-        return CM;
+        return memberMissionRepository.showCompletedMissions(user_id);
     }
 
 }
