@@ -15,4 +15,16 @@ public class ReviewDto {
     private final MemberStatus memberStatus;
     private final String title;
     private final LocalDateTime createdAt;
+
+    @Override
+    public String toString() {
+        return "ReviewDto{" +
+                "reviewId=" + reviewId +
+                ", storeId=" + storeId +
+                ", memberId=" + memberId +
+                ", memberStatus=" + memberStatus +
+                ", title='" + title + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

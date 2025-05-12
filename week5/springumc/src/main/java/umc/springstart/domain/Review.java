@@ -28,4 +28,15 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + id +
+                ", storeId=" + (store != null ? store.getId() : "null") +
+                ", memberId=" + (member != null ? member.getId() : "null") +
+                ", memberStatus=" + (member != null ? member.getStatus() : "null") +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
