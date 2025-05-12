@@ -3,7 +3,6 @@ package umc.springstart.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.springstart.domain.common.BaseEntity;
-import umc.springstart.domain.mapping.MemberMission;
 
 import java.util.ArrayList;
 import java.util.List;
