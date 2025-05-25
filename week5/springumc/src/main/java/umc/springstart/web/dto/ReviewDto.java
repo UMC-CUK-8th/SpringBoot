@@ -13,7 +13,7 @@ public class ReviewDto {
     private final Long storeId;
     private final Long memberId;
     private final MemberStatus memberStatus;
-    private final String title;
+    private final String body;
     private final LocalDateTime createdAt;
 
     @Override
@@ -23,7 +23,7 @@ public class ReviewDto {
                 ", storeId=" + storeId +
                 ", memberId=" + memberId +
                 ", memberStatus=" + memberStatus +
-                ", title='" + title + '\'' +
+                ", title='" + body + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
     }
