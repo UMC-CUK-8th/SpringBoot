@@ -20,5 +20,14 @@ public class MissionResponseDTO {
         private MissionStatus status; // 초기 도전 상태 (CHALLENGING)
         private LocalDateTime challengedAt; // 도전 시작 시간 (생성 시간)
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AddMissionResultDTO {
+        private Long missionId; // 새로 생성된 미션의 ID
+        private LocalDateTime createdAt; // 미션 생성 시간 (BaseEntity 상속 시)
+    }
 }
 

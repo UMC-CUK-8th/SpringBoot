@@ -5,6 +5,8 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import umc.springstart.apiPayload.ApiResponse;
 import umc.springstart.converter.MemberMissionConverter;
+import umc.springstart.converter.StoreMissionConverter;
+import umc.springstart.domain.Mission;
 import umc.springstart.domain.mapping.MemberMission;
 import umc.springstart.service.MissionService.MissionCommandService;
 import umc.springstart.web.dto.MissionDTO.MissionRequestDTO;
@@ -29,5 +31,17 @@ public class MissionRestController {
         return ApiResponse.onSuccess(responseDTO);
     }
 
+    @PostMapping("/stores/{storeId}")
+    @Tag(name = "가게에 미션추가")
+    public ApiResponse<MissionResponseDTO.AddMissionResultDTO> addStoreMission(
+            @PathVariable(name = "storeId") Long storeId,
+            @RequestBody @Valid MissionRequestDTO.AddMissionDTO request) {
+
+        Mission mission = missionCommandService.addMission(storeId, request);
+
+        MissionResponseDTO.AddMissionResultDTO responseDTO = StoreMissionConverter.toAddMissionResultDTO(mission);
+
+        return ApiResponse.onSuccess(responseDTO);
+    }
 
 }
