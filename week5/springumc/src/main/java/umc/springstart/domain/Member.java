@@ -2,6 +2,7 @@ package umc.springstart.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.springstart.domain.common.BaseEntity;
 import umc.springstart.domain.enums.Gender;
 import umc.springstart.domain.enums.MemberStatus;
@@ -27,9 +28,6 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(nullable = false, length = 20)
-    private String nickname;
-
     @Column(nullable = false, length = 40)
     private String address;
 
@@ -49,9 +47,10 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 50)
+    // @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -65,15 +64,4 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", point=" + point +
-                '}';
-    }
 }

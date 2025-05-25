@@ -1,4 +1,4 @@
-package umc.springstart.dto;
+package umc.springstart.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

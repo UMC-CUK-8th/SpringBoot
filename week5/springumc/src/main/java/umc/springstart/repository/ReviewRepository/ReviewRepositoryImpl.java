@@ -7,7 +7,7 @@ import umc.springstart.domain.QMember;
 import umc.springstart.domain.QReview;
 import umc.springstart.domain.QStore;
 import umc.springstart.domain.enums.MemberStatus;
-import umc.springstart.dto.ReviewDto;
+import umc.springstart.web.dto.ReviewDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

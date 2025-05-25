@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import umc.springstart.apiRPayload.ApiResponse;
+import umc.springstart.apiPayload.ApiResponse;
 import umc.springstart.converter.TempConverter;
 import umc.springstart.web.dto.TempResponse;
 import umc.springstart.service.TempSevice.TempQueryService;

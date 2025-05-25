@@ -1,4 +1,4 @@
-package umc.springstart.apiRPayload.code;
+package umc.springstart.apiPayload.code;
 
 public interface BaseErrorCode {
 
