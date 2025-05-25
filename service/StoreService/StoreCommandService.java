@@ -1,8 +1,9 @@
 package umcstudy.service.StoreService;
 
+import umcstudy.study.domain.Store;
 import umcstudy.web.dto.StoreRequestDTO;
 
 public interface StoreCommandService {
 
-    void registerStore(StoreRequestDTO.JoinDto request);
+    Store registerStore(StoreRequestDTO.JoinDto request);
 }

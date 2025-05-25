@@ -1,5 +1,6 @@
 package umcstudy.service.StoreService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umcstudy.apiPayload.code.status.ErrorStatus;
@@ -15,16 +16,18 @@ import umcstudy.web.dto.StoreRequestDTO;
 @RequiredArgsConstructor
 public class StoreCommandServiceImpl implements StoreCommandService{
 
-    private final StoreRegiRepository StoreRegiRepository;
-    private final LocationRegiRepository LocationRegiRepository;
+    private final StoreRegiRepository storeRegiRepository;
+    private final LocationRegiRepository locationRegiRepository;
+
 
     @Override
-    public void registerStore(StoreRequestDTO.JoinDto request) {
-        Location location = LocationRegiRepository.findById(request.getLocationId())
+    @Transactional
+    public Store registerStore(StoreRequestDTO.JoinDto request) {
+        Location location = locationRegiRepository.findById(request.getLocationId())
                 .orElseThrow(() -> new LocationHandler(ErrorStatus.LOCATION_NOT_FOUND));
 
         Store store = StoreConverter.toStore(request, location);
 
-        StoreRegiRepository.save(store);
+        return storeRegiRepository.save(store);
     }
 }

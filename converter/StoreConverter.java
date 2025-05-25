@@ -5,7 +5,6 @@ import umcstudy.study.domain.Store;
 import umcstudy.web.dto.StoreRequestDTO;
 import umcstudy.web.dto.StoreResponseDTO;
 import java.time.LocalDateTime;
-import static umcstudy.study.domain.QLocation.location;
 
 public class StoreConverter {
 
