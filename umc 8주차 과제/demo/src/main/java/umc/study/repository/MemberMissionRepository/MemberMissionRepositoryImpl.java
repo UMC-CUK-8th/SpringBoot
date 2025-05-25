@@ -36,7 +36,7 @@ public class MemberMissionRepositoryImpl implements MemberMissionRepositoryCusto
         }
 
         if (status !=null) {
-            predicate.and(memberMission.status.eq(Status.IN_PROGRESS));
+            predicate.and(memberMission.status.eq(Status.BEFORE_START));
             // 상태가 null이 아니면 조건에 포함시킴킴
         }
 
@@ -62,6 +62,7 @@ public class MemberMissionRepositoryImpl implements MemberMissionRepositoryCusto
         return result.getCompletedMission();
 
     }
+
 
 
 }

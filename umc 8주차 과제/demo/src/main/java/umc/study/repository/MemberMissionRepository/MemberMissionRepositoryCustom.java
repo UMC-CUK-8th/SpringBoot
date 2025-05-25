@@ -10,4 +10,5 @@ public interface MemberMissionRepositoryCustom {
 
     Integer showCompletedMissions(Long userId);
 
+
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
 
-    private final FoodCategoryRepository foodCategoryRepository;
+    private final ValidatorService validatorService;
 
     @Override
     public void initialize(ExistCategories constraintAnnotation) {
@@ -24,8 +24,8 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
 
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
-        boolean isValid = values.stream()
-                .allMatch(value -> foodCategoryRepository.existsById(value));
+
+        boolean isValid = validatorService. categoryExist(values);
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();

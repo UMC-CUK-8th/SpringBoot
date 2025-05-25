@@ -37,6 +37,10 @@ public class MemberMission extends BaseEntity {
     private Mission mission;
 
 
+    public void changeStatus(Status Status) {
+        this.status = Status;
+    }
+
     @Override
     public String toString() {
         return "진행중인 미션 목록: " +

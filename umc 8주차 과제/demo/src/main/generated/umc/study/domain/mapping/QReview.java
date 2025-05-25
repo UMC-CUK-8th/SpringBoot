@@ -61,7 +61,7 @@ public class QReview extends EntityPathBase<Review> {
     public QReview(Class<? extends Review> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.market = inits.isInitialized("market") ? new umc.study.domain.QMarket(forProperty("market"), inits.get("market")) : null;
-        this.mission = inits.isInitialized("mission") ? new umc.study.domain.QMission(forProperty("mission")) : null;
+        this.mission = inits.isInitialized("mission") ? new umc.study.domain.QMission(forProperty("mission"), inits.get("mission")) : null;
     }
 
 }

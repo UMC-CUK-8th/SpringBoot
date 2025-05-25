@@ -58,7 +58,7 @@ public class QMemberMission extends EntityPathBase<MemberMission> {
 
     public QMemberMission(Class<? extends MemberMission> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.mission = inits.isInitialized("mission") ? new umc.study.domain.QMission(forProperty("mission")) : null;
+        this.mission = inits.isInitialized("mission") ? new umc.study.domain.QMission(forProperty("mission"), inits.get("mission")) : null;
         this.user = inits.isInitialized("user") ? new umc.study.domain.QUser(forProperty("user"), inits.get("user")) : null;
     }
 

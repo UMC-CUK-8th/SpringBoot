@@ -5,10 +5,14 @@ import umc.study.domain.enums.Status;
 import umc.study.domain.mapping.MemberMission;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Long>, MemberMissionRepositoryCustom {
 
     
     List<MemberMission> findByUserId(Long userId);
-    List<MemberMission> findByUserIdAndStatus(Long userId, Status status);
+    Optional<MemberMission> findByUserIdAndMissionId(Long userId, Long missionId);
+
+
+
 }

@@ -66,7 +66,7 @@ public class QMarket extends EntityPathBase<Market> {
 
     public QMarket(Class<? extends Market> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.mission = inits.isInitialized("mission") ? new QMission(forProperty("mission")) : null;
+        this.mission = inits.isInitialized("mission") ? new QMission(forProperty("mission"), inits.get("mission")) : null;
     }
 
 }

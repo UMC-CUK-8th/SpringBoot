@@ -18,6 +18,8 @@ public class QMission extends EntityPathBase<Mission> {
 
     private static final long serialVersionUID = -200839606L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QMission mission = new QMission("mission");
 
     public final umc.study.domain.common.QBaseEntity _super = new umc.study.domain.common.QBaseEntity(this);
@@ -29,6 +31,8 @@ public class QMission extends EntityPathBase<Mission> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final QMarket market;
+
     public final ListPath<umc.study.domain.mapping.MemberMission, umc.study.domain.mapping.QMemberMission> memberMissionList = this.<umc.study.domain.mapping.MemberMission, umc.study.domain.mapping.QMemberMission>createList("memberMissionList", umc.study.domain.mapping.MemberMission.class, umc.study.domain.mapping.QMemberMission.class, PathInits.DIRECT2);
 
     public final StringPath missionName = createString("missionName");
@@ -39,15 +43,24 @@ public class QMission extends EntityPathBase<Mission> {
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMission(String variable) {
-        super(Mission.class, forVariable(variable));
+        this(Mission.class, forVariable(variable), INITS);
     }
 
     public QMission(Path<? extends Mission> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QMission(PathMetadata metadata) {
-        super(Mission.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QMission(PathMetadata metadata, PathInits inits) {
+        this(Mission.class, metadata, inits);
+    }
+
+    public QMission(Class<? extends Mission> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.market = inits.isInitialized("market") ? new QMarket(forProperty("market"), inits.get("market")) : null;
     }
 
 }

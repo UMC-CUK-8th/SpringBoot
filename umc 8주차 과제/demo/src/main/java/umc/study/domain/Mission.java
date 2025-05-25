@@ -31,5 +31,9 @@ public class Mission extends BaseEntity {
     @OneToMany(mappedBy = "mission",cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList=new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="market_id")
+    private Market market;
+
     
 }

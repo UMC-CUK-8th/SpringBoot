@@ -12,7 +12,7 @@ import umc.study.validation.annotation.ExistMarket;
 @RequiredArgsConstructor
 public class MarketExistValidator  implements ConstraintValidator<ExistMarket, Long> {
 
-    private final MarketRepository marketRepository;
+    private final ValidatorService validatorService;
 
     @Override
     public void initialize(ExistMarket constraintAnnotation) {
@@ -20,7 +20,7 @@ public class MarketExistValidator  implements ConstraintValidator<ExistMarket, L
     }
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        boolean isValid = marketRepository.existsById(value);
+        boolean isValid = validatorService.isMarketExist(value);
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
