@@ -16,17 +16,19 @@ public class Review extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String body;
 
     @Column(nullable = false)
     private Float score;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @Setter
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
+    @Setter
     private Store store;
 
     @Override
@@ -36,7 +38,7 @@ public class Review extends BaseEntity {
                 ", storeId=" + (store != null ? store.getId() : "null") +
                 ", memberId=" + (member != null ? member.getId() : "null") +
                 ", memberStatus=" + (member != null ? member.getStatus() : "null") +
-                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
                 '}';
     }
 }

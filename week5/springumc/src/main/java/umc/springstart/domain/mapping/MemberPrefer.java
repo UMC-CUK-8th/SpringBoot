@@ -2,9 +2,10 @@ package umc.springstart.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
-import umc.springstart.domain.FoodCategory;
-import umc.springstart.domain.Member;
 import umc.springstart.domain.common.BaseEntity;
+import umc.springstart.domain.Member;
+import umc.springstart.domain.FoodCategory;
+
 
 @Entity
 @Getter
@@ -12,7 +13,6 @@ import umc.springstart.domain.common.BaseEntity;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class MemberPrefer extends BaseEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +22,17 @@ public class MemberPrefer extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "foodCategory_id")
+    @JoinColumn(name = "category_id")
     private FoodCategory foodCategory;
+
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getMemberPreferList().remove(this);
+        this.member = member;
+        member.getMemberPreferList().add(this);
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory){
+        this.foodCategory = foodCategory;
+    }
 }

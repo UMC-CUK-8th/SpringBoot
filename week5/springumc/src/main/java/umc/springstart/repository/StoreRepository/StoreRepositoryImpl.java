@@ -23,9 +23,6 @@ public class StoreRepositoryImpl implements StoreRepositoryCustom{
             predicate.and(store.name.eq(name));
         }
 
-        if (score != null) {
-            predicate.and(store.score.goe(4.0f));
-        }
 
         return jpaQueryFactory
                 .selectFrom(store)

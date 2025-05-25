@@ -1,7 +1,7 @@
 package umc.springstart.repository.ReviewRepository;
 
 import umc.springstart.domain.enums.MemberStatus;
-import umc.springstart.dto.ReviewDto;
+import umc.springstart.web.dto.ReviewDto;
 
 import java.util.List;
 

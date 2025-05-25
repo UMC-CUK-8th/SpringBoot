@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.springstart.domain.Member;
 import umc.springstart.domain.enums.MissionStatus;
-import umc.springstart.dto.MemberMissionDto;
+import umc.springstart.web.dto.MemberMissionDto;
 import umc.springstart.repository.MemberRepository.MemberRepository;
 
 import java.util.List;
