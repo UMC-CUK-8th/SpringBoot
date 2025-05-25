@@ -1,5 +1,6 @@
 package umc.springstart.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ public class MemberRestController {
 
     private final MemberCommandService memberCommandService;
 
+    @Tag(name = "회원가입")
     @PostMapping("/")
     public ApiResponse<MemberResponseDTO.JoinResultDTO> join(@RequestBody @Valid MemberRequestDTO.JoinDto request){
         Member member = memberCommandService.joinMember(request);

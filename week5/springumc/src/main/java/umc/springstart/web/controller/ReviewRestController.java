@@ -1,5 +1,6 @@
 package umc.springstart.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ public class ReviewRestController {
         this.reviewCommandService = reviewCommandService;
     }
 
+    @Tag(name = "리뷰추가하기")
     @PostMapping("/reviews")
     public ApiResponse<ReviewResponseDTO.addResultDTO> join(@RequestBody @Valid ReviewRequestDTO.AddReviewDTO request) {
         Review review = reviewCommandService.addReview(request);
