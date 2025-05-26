@@ -1,0 +1,10 @@
+package umc.springstart.repository.ReviewRepository;
+
+import umc.springstart.domain.enums.MemberStatus;
+import umc.springstart.web.dto.ReviewDto;
+
+import java.util.List;
+
+public interface ReviewRepositoryCustom {
+    List<ReviewDto> findStoreIdAndMemberStatus(Long id, MemberStatus memberStatus);
+}
