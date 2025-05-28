@@ -1,5 +1,5 @@
-package org.example.study.domain.enums;
+package umcstudy.study.domain.enums;
 
 public enum missionVisit {
-    VISITED, NOTVISITED
+    VISITED, NOTVISITED, VISITING
 }

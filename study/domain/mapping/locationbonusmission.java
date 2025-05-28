@@ -1,12 +1,12 @@
-package org.example.study.domain.mapping;
+package umcstudy.study.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.Location;
-import org.example.study.domain.Members;
-import org.example.study.domain.Missions;
-import org.example.study.domain.common.BaseEntity;
-import org.example.study.domain.enums.bounscheck;
+import umcstudy.study.domain.Location;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.Missions;
+import umcstudy.study.domain.common.BaseEntity;
+import umcstudy.study.domain.enums.bounscheck;
 
 @Getter
 @Builder

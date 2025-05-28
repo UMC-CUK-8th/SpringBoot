@@ -1,6 +1,6 @@
-package org.example.study.PointRepository;
+package umcstudy.study.PointRepository;
 
-import org.example.study.domain.Point;
+import umcstudy.study.domain.Point;
 import java.util.List;
 
 public interface PointRepositoryCustom {

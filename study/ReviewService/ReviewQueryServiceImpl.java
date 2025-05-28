@@ -1,13 +1,14 @@
-package org.example.study.ReviewService;
+package umcstudy.study.ReviewService;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.study.MemberRepository.MemberRepository;
-import org.example.study.ReviewRepository.ReviewRepository;
-import org.example.study.StoreRepository.StoreRepository;
-import org.example.study.domain.Members;
-import org.example.study.domain.Store;
-import org.example.study.domain.mapping.Reviews;
+import umcstudy.study.MemberRepository.MemberRepository;
+import umcstudy.study.ReviewRepository.ReviewRepository;
+import umcstudy.study.ReviewService.ReviewQueryService;
+import umcstudy.study.StoreRepository.StoreRepository;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.Store;
+import umcstudy.study.domain.mapping.Reviews;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,16 +1,15 @@
-package org.example.study.StoreRepository;
+package umcstudy.study.StoreRepository;
 
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.example.study.domain.QStore;
-import org.example.study.domain.Store;
-import org.springframework.context.annotation.Bean;
+import umcstudy.study.StoreRepository.StoreRepositoryCustom;
+import umcstudy.study.domain.QStore;
+import umcstudy.study.domain.Store;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor

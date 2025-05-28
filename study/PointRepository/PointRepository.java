@@ -1,6 +1,7 @@
-package org.example.study.PointRepository;
+package umcstudy.study.PointRepository;
 
-import org.example.study.domain.Point;
+import umcstudy.study.PointRepository.PointRepositoryCustom;
+import umcstudy.study.domain.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

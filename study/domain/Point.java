@@ -1,8 +1,9 @@
-package org.example.study.domain;
+package umcstudy.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.common.BaseEntity;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.common.BaseEntity;
 
 @Getter
 @Builder

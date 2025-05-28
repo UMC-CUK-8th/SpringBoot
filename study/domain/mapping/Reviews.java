@@ -1,11 +1,11 @@
-package org.example.study.domain.mapping;
+package umcstudy.study.domain.mapping;
 
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.Members;
-import org.example.study.domain.Store;
-import org.example.study.domain.common.BaseEntity;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.Store;
+import umcstudy.study.domain.common.BaseEntity;
 
 @Getter
 @Builder

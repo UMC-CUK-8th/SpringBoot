@@ -1,6 +1,7 @@
-package org.example.study.StoreRepository;
+package umcstudy.study.StoreRepository;
 
-import org.example.study.domain.Store;
+import umcstudy.study.StoreRepository.StoreRepositoryCustom;
+import umcstudy.study.domain.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,11 +1,9 @@
-package org.example.study.ReviewRepository;
+package umcstudy.study.ReviewRepository;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.example.study.domain.mapping.QReviews;
-import org.example.study.domain.mapping.Reviews;
+import umcstudy.study.ReviewRepository.ReviewRepositoryCustom;
+import umcstudy.study.domain.mapping.Reviews;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 
 
 @Repository

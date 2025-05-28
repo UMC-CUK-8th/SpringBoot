@@ -1,6 +1,7 @@
-package org.example.study.localmissionRepository;
+package umcstudy.study.localmissionRepository;
 
-import org.example.study.domain.mapping.locationbonusmission;
+import umcstudy.study.domain.mapping.locationbonusmission;
+import umcstudy.study.localmissionRepository.localmissionRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
