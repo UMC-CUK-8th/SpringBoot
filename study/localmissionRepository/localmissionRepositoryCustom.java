@@ -1,7 +1,7 @@
-package org.example.study.localmissionRepository;
+package umcstudy.study.localmissionRepository;
 
-import org.example.study.domain.enums.missionVisit;
-import org.example.study.domain.mapping.locationbonusmission;
+import umcstudy.study.domain.enums.missionVisit;
+import umcstudy.study.domain.mapping.locationbonusmission;
 import java.util.List;
 
 public interface localmissionRepositoryCustom {

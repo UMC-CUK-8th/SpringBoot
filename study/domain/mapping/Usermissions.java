@@ -1,13 +1,15 @@
-package org.example.study.domain.mapping;
+package umcstudy.study.domain.mapping;
 
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.Members;
-import org.example.study.domain.Missions;
-import org.example.study.domain.common.BaseEntity;
-import org.example.study.domain.enums.missionVisit;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.Missions;
+import umcstudy.study.domain.Store;
+import umcstudy.study.domain.common.BaseEntity;
+import umcstudy.study.domain.enums.missionVisit;
 
+@Setter
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,6 +23,10 @@ public class Usermissions extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private missionVisit visitstatus;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

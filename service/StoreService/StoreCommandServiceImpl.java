@@ -11,6 +11,7 @@ import umcstudy.repository.StoreRegiRepository;
 import umcstudy.study.domain.Location;
 import umcstudy.study.domain.Store;
 import umcstudy.web.dto.StoreRequestDTO;
+import umcstudy.web.dto.StoreResponseDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -22,12 +23,14 @@ public class StoreCommandServiceImpl implements StoreCommandService{
 
     @Override
     @Transactional
-    public Store registerStore(StoreRequestDTO.JoinDto request) {
+    public StoreResponseDTO.JoinResultDTO registerStore(StoreRequestDTO.JoinDto request) {
         Location location = locationRegiRepository.findById(request.getLocationId())
                 .orElseThrow(() -> new LocationHandler(ErrorStatus.LOCATION_NOT_FOUND));
 
         Store store = StoreConverter.toStore(request, location);
+        Store savedStore = storeRegiRepository.save(store);
 
-        return storeRegiRepository.save(store);
+
+        return StoreConverter.toJoinResultDTO(savedStore);
     }
 }

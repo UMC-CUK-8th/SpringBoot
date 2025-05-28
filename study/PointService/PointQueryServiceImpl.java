@@ -1,4 +1,4 @@
-package org.example.study.PointService;
+package umcstudy.study.PointService;
 
 public class PointQueryServiceImpl {
 }

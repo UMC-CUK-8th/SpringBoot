@@ -1,9 +1,7 @@
-package org.example.study.ReviewRepository;
+package umcstudy.study.ReviewRepository;
 
-import org.example.study.domain.Store;
-import org.example.study.domain.mapping.Reviews;
-
-import java.util.List;
+import umcstudy.study.domain.Store;
+import umcstudy.study.domain.mapping.Reviews;
 
 public interface ReviewRepositoryCustom {
 }

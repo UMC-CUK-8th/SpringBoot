@@ -1,9 +1,9 @@
-package org.example.study.DTO;
+package umcstudy.study.DTO;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.example.study.domain.mapping.locationbonusmission;
+import umcstudy.study.domain.mapping.locationbonusmission;
 
 import java.util.List;
 

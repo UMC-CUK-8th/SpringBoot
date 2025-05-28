@@ -1,9 +1,15 @@
-package org.example.study.domain;
+package umcstudy.study.domain;
 
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.common.BaseEntity;
+import umcstudy.study.domain.Store;
+import umcstudy.study.domain.common.BaseEntity;
+import umcstudy.study.domain.mapping.Reviews;
+import umcstudy.study.domain.mapping.Usermissions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Builder
@@ -16,6 +22,7 @@ public class Missions extends BaseEntity {
 
     private Long id;
 
+
     @Column(nullable = false, length = 40)
     private String missionname;
 
@@ -23,7 +30,12 @@ public class Missions extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
-    private Store stores;
+    private Store store;
+
+    @OneToMany(mappedBy = "missions", cascade = CascadeType.ALL)
+    private List<Usermissions> UsermissionsmissionsList = new ArrayList<>();
+
+
 
 
 }

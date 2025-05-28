@@ -1,13 +1,14 @@
-package org.example.study.MissionRepository;
+package umcstudy.study.MissionRepository;
 
 
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.example.study.domain.Missions;
-import org.example.study.domain.QMissions;
-import org.example.study.domain.enums.missionVisit;
+import umcstudy.study.MissionRepository.MissionRepositoryCustom;
+import umcstudy.study.domain.Missions;
+import umcstudy.study.domain.QMissions;
+import umcstudy.study.domain.enums.missionVisit;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,11 +1,10 @@
-package org.example.study.ReviewService;
+package umcstudy.study.ReviewService;
 
-import org.example.study.domain.Members;
-import org.example.study.domain.Store;
-import org.example.study.domain.mapping.Reviews;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.Store;
+import umcstudy.study.domain.mapping.Reviews;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

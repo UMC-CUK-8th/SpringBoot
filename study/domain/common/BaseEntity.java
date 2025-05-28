@@ -1,4 +1,4 @@
-package org.example.study.domain.common;
+package umcstudy.study.domain.common;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

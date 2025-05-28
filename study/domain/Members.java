@@ -1,18 +1,20 @@
-package org.example.study.domain;
+package umcstudy.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.common.BaseEntity;
-import org.example.study.domain.enums.memberStatus;
-import org.example.study.domain.mapping.Reviews;
-import org.example.study.domain.mapping.Usermissions;
-import org.example.study.domain.mapping.locationbonusmission;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import umcstudy.study.domain.Point;
+import umcstudy.study.domain.common.BaseEntity;
+import umcstudy.study.domain.enums.memberStatus;
+import umcstudy.study.domain.mapping.Reviews;
+import umcstudy.study.domain.mapping.Usermissions;
+import umcstudy.study.domain.mapping.locationbonusmission;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.example.study.domain.QMembers.members;
-
+@DynamicUpdate
+@DynamicInsert
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

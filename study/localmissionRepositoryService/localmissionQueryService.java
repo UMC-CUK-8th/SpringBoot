@@ -1,8 +1,8 @@
-package org.example.study.localmissionRepositoryService;
+package umcstudy.study.localmissionRepositoryService;
 
-import org.example.study.DTO.LocalMissionStatusDTO;
-import org.example.study.domain.enums.missionVisit;
-import org.example.study.domain.mapping.locationbonusmission;
+import umcstudy.study.DTO.LocalMissionStatusDTO;
+import umcstudy.study.domain.enums.missionVisit;
+import umcstudy.study.domain.mapping.locationbonusmission;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,17 +1,17 @@
-package org.example.study.localmissionRepositoryService;
+package umcstudy.study.localmissionRepositoryService;
 
 import lombok.RequiredArgsConstructor;
-import org.example.study.DTO.LocalMissionStatusDTO;
-import org.example.study.domain.enums.missionVisit;
-import org.example.study.domain.mapping.locationbonusmission;
-import org.example.study.localmissionRepository.localmissionRepository;
-import org.example.study.usermissionRepository.usermissionRepository;
+import umcstudy.study.DTO.LocalMissionStatusDTO;
+import umcstudy.study.domain.enums.missionVisit;
+import umcstudy.study.domain.mapping.locationbonusmission;
+import umcstudy.study.localmissionRepository.localmissionRepository;
+import umcstudy.study.UsermissionRepository.UsermissionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static org.example.study.domain.QLocation.location;
+import static umcstudy.study.domain.QLocation.location;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ import static org.example.study.domain.QLocation.location;
 public class localmissionQueryServiceImpl implements localmissionQueryService {
 
     private final localmissionRepository localmissionRepository;
-    private final usermissionRepository usermissionRepository;
+    private final UsermissionRepository usermissionRepository;
     @Override
     public Optional<locationbonusmission> findlocalmission(Long id) {
         return localmissionRepository.findById(id);

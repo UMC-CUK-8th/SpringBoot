@@ -1,12 +1,13 @@
-package org.example.study.localmissionRepository;
+package umcstudy.study.localmissionRepository;
 
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.example.study.domain.QLocation;
-import org.example.study.domain.mapping.Qlocationbonusmission;
-import org.example.study.domain.mapping.locationbonusmission;
+import umcstudy.study.domain.QLocation;
+import umcstudy.study.domain.mapping.Qlocationbonusmission;
+import umcstudy.study.domain.mapping.locationbonusmission;
+import umcstudy.study.localmissionRepository.localmissionRepositoryCustom;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 

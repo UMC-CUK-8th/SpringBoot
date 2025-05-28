@@ -1,7 +1,7 @@
-package org.example.study.MissionRepository;
+package umcstudy.study.MissionRepository;
 
-import org.example.study.domain.Missions;
-import org.example.study.domain.enums.missionVisit;
+import umcstudy.study.domain.Missions;
+import umcstudy.study.domain.enums.missionVisit;
 
 import java.util.List;
 

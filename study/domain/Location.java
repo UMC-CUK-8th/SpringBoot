@@ -1,8 +1,12 @@
-package org.example.study.domain;
+package umcstudy.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.common.BaseEntity;
+import umcstudy.study.domain.common.BaseEntity;
+import umcstudy.study.domain.mapping.Reviews;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -22,5 +26,7 @@ public class Location extends BaseEntity {
 
     private Integer storecount;
 
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private List<Store> StoresList = new ArrayList<>();
 
 }

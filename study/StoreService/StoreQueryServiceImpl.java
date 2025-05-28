@@ -1,12 +1,18 @@
-package org.example.study.StoreService;
+package umcstudy.study.StoreService;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.study.StoreRepository.StoreRepository;
-import org.example.study.StoreService.StoreQueryService;
-import org.example.study.domain.Store;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import umcstudy.study.MissionRepository.MissionRepository;
+import umcstudy.study.StoreRepository.StoreRepository;
+import umcstudy.study.StoreService.StoreQueryService;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.Missions;
+import umcstudy.study.domain.Store;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umcstudy.study.domain.mapping.Reviews;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +23,7 @@ import java.util.Optional;
 public class StoreQueryServiceImpl implements StoreQueryService {
 
     private final StoreRepository storeRepository;
+    private final MissionRepository missionRepository;
 
     @Override
     public Optional<Store> findStore(Long id) {
@@ -30,5 +37,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
         filteredStores.forEach(store -> System.out.println("Store: " + store));
 
         return filteredStores;
+    }
+    @Override
+    public Page<Missions> getMissionList(Long StoreId, Integer page) {
+        Store store = storeRepository.findById(StoreId).get();
+        Page<Missions> StorePage = missionRepository.findAllByStore(store, PageRequest.of(page,10));
+        return StorePage;
     }
 }

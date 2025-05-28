@@ -1,16 +1,17 @@
-package org.example.study.MemberRepository;
+package umcstudy.study.MemberRepository;
 
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.example.study.domain.Members;
-import org.example.study.domain.QMembers;
-import org.example.study.domain.QPoint;
+import umcstudy.study.MemberRepository.MemberRepositoryCustom;
+import umcstudy.study.domain.Members;
+import umcstudy.study.domain.QMembers;
+import umcstudy.study.domain.QPoint;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-import static org.example.study.domain.QMembers.members;
+import static umcstudy.study.domain.QMembers.members;
 
 @Repository
 @RequiredArgsConstructor

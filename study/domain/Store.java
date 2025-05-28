@@ -1,9 +1,9 @@
-package org.example.study.domain;
+package umcstudy.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.study.domain.common.BaseEntity;
-import org.example.study.domain.mapping.Reviews;
+import umcstudy.study.domain.common.BaseEntity;
+import umcstudy.study.domain.mapping.Reviews;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +16,13 @@ import java.util.List;
 public class Store extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Column(nullable = false, length = 50)
     private String storename;
 
     @Column(nullable = false, length = 40)
-    private String storelocation;
+    private String storeaddress;
 
     @Column(nullable = false, length = 20)
     private String storetype;
@@ -34,12 +33,16 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Reviews> reviewsList = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id")
+    private Location location;
+
     @Override
     public String toString() {
         return "Store{" +
                 "id=" + id +
                 ", name='" + storename + '\'' +
-                ", address='" + storelocation + '\'' +
+                ", address='" + storeaddress + '\'' +
                 ", type=" + storetype +
                  // region의 이름 출력
                 '}';
