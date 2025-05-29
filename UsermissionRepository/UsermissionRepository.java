@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface UsermissionRepository extends JpaRepository<Usermissions, Long>, UsermissionRepositoryCustom {
-    Page<Usermissions> findByMemberIdAndMissionVisit(Members members, missionVisit visitStatus, PageRequest pageRequest);
+    Page<Usermissions> findByMembersAndVisitstatus(Members members, missionVisit visitStatus, PageRequest pageRequest);
 }
