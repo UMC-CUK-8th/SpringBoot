@@ -46,7 +46,7 @@ public class UsermissionQueryServiceImpl implements UsermissionQueryService {
     @Override
     public Page<Usermissions> getIngMissionList(Long MemberId, Integer page) {
         Members members = memberRepository.findById(MemberId).get();
-        Page<Usermissions> UsermissionsPage = usermissionRepository.findByMemberIdAndMissionVisit(members, missionVisit.VISITING, PageRequest.of(page,10));
+        Page<Usermissions> UsermissionsPage = usermissionRepository.findByMembersAndVisitstatus(members, missionVisit.VISITING, PageRequest.of(page,10));
         return UsermissionsPage;
     }
 
