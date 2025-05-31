@@ -31,5 +31,10 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewId;
     }
 
+    @Override
+    public ReviewDTO.UserReviewListDTO getUserReviews(Long userId, Integer page) {
+        return null;
+    }
+
 
 }

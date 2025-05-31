@@ -7,8 +7,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.Market;
+import umc.study.domain.Mission;
 import umc.study.domain.mapping.Review;
 import umc.study.repository.MarketRepository.MarketRepository;
+import umc.study.repository.MissionRepository.MissionRepository;
 import umc.study.repository.ReviewRepository.ReviewRepository;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.Optional;
 public class MarketQueryServiceImpl  implements MarketQueryService{
 
     private final MarketRepository marketRepository;
+    private final MissionRepository missionRepository;
     private final ReviewRepository reviewRepository;
 
     @Override
@@ -43,6 +46,14 @@ public class MarketQueryServiceImpl  implements MarketQueryService{
 
         return MarketPage;
 
+    }
+
+    @Override
+    public Page<Mission> getMissionList(Long marketId, Integer page) {
+        Market market = marketRepository.findById(marketId).get();
+
+        Page<Mission> MarketPage=missionRepository.findAllByMarket(market, PageRequest.of(page,10));
+        return MarketPage;
     }
 
 

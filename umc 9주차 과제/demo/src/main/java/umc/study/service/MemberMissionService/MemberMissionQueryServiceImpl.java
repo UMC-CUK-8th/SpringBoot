@@ -1,12 +1,18 @@
 package umc.study.service.MemberMissionService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.study.apiPayload.code.status.ErrorStatus;
+import umc.study.apiPayload.exception.GeneralException;
+import umc.study.domain.User;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.dto.MemberMissionDTO;
 import umc.study.domain.enums.Status;
 import umc.study.repository.MemberMissionRepository.MemberMissionRepository;
+import umc.study.repository.UserRepository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,9 +20,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly=true)
-public class MemberMissionServiceImpl implements MemberMissionQueryService {
+public class MemberMissionQueryServiceImpl implements MemberMissionQueryService {
 
     private final MemberMissionRepository memberMissionRepository;
+    private final UserRepository userRepository;
 
 
     @Override
@@ -40,6 +47,16 @@ public class MemberMissionServiceImpl implements MemberMissionQueryService {
     @Override
     public Integer showCompletedMission(Long user_id) {
         return memberMissionRepository.showCompletedMissions(user_id);
+    }
+
+
+    @Override
+    public Page<MemberMission> getMissionByStatus(Long userId,Status status, Integer page) {
+        User user = userRepository.findById(userId).
+                orElseThrow(() -> new GeneralException(ErrorStatus.USER_NOT_FOUND));
+
+        Page<MemberMission> ProgressMissionPage =memberMissionRepository.findAllByUserIdAndStatus(userId, status, PageRequest.of(page,10));
+        return ProgressMissionPage;
     }
 
 }
