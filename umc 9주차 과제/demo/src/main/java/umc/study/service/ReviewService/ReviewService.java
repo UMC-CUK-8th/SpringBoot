@@ -10,4 +10,5 @@ public interface ReviewService {
     // 리뷰 추가하기
 
 
+    ReviewDTO.UserReviewListDTO getUserReviews(Long userId, Integer page);
 }

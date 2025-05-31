@@ -2,6 +2,7 @@ package umc.study.converter;
 
 import org.springframework.data.domain.Page;
 import umc.study.domain.Market;
+import umc.study.domain.Mission;
 import umc.study.domain.mapping.Review;
 import umc.study.dto.MarketResponseDTO;
 
@@ -32,6 +33,30 @@ public class MarketConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewPreViewDTOList.size())
                 .reviewList(reviewPreViewDTOList)
+                .build();
+    }
+
+    public static MarketResponseDTO.MissionPreviewDTO missionPreviewDTO(Mission mission) {
+        return MarketResponseDTO.MissionPreviewDTO.builder()
+                .missionName(mission.getMissionName())
+                .description(mission.getDescription())
+                .repair(mission.getRepair())
+                .createdAt(mission.getCreatedAt().toLocalDate())
+
+                .build();
+    }
+
+    public static MarketResponseDTO.MissionPreviewListDTO missionPreviewListDTO(Page<Mission> missionList) {
+        List<MarketResponseDTO.MissionPreviewDTO> missionPreViewDTOList= missionList.stream()
+                .map(MarketConverter::missionPreviewDTO).collect(Collectors.toList());
+
+        return MarketResponseDTO.MissionPreviewListDTO.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionPreViewDTOList.size())
+                .missionList(missionPreViewDTOList)
                 .build();
     }
 }
