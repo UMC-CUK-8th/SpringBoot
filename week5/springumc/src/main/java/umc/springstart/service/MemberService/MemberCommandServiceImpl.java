@@ -51,4 +51,6 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
         return responseDTO;
     }
+
+
 }
