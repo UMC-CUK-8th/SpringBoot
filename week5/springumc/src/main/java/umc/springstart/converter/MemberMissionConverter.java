@@ -1,6 +1,10 @@
 package umc.springstart.converter;
 
+import umc.springstart.domain.Member;
+import umc.springstart.domain.Mission;
+import umc.springstart.domain.enums.MissionStatus;
 import umc.springstart.domain.mapping.MemberMission;
+import umc.springstart.web.dto.MissionDTO.MissionRequestDTO;
 import umc.springstart.web.dto.MissionDTO.MissionResponseDTO;
 
 public class MemberMissionConverter {
@@ -16,6 +20,20 @@ public class MemberMissionConverter {
                 .build();
     }
 
-    // 필요하다면 요청 DTO -> MemberMission 엔티티 변환 메소드 추가 가능
-    // public static MemberMission toMemberMission(MissionRequestDTO.ChallengeMissionDTO request) { ... }
+    public static MemberMission toMemberMission(
+            MissionRequestDTO.ChallengeMissionDTO request,
+            Member member,
+            Mission mission) {
+
+        MemberMission memberMission = MemberMission.builder()
+                .status(MissionStatus.CHALLENGING)
+                .build();
+
+        memberMission.setMember(member);
+        memberMission.setMission(mission);
+
+        return memberMission;
+    }
+
+
 }
