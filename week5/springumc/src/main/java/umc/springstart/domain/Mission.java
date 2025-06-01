@@ -26,11 +26,13 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private LocalDate deadline;
 
+    //예:만원이상 식사시
     @Column(nullable = false)
     private String missionSpec;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
+    @Setter
     private Store store;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)

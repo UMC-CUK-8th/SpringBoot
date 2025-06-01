@@ -2,7 +2,7 @@ package umc.springstart.service.MemberService;
 
 import umc.springstart.domain.Member;
 import umc.springstart.domain.enums.MissionStatus;
-import umc.springstart.dto.MemberMissionDto;
+import umc.springstart.web.dto.MemberMissionDto;
 
 import java.util.List;
 import java.util.Optional;

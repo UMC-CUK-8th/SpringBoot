@@ -7,7 +7,7 @@ import umc.springstart.domain.QMember;
 import umc.springstart.domain.QReview;
 import umc.springstart.domain.QStore;
 import umc.springstart.domain.enums.MemberStatus;
-import umc.springstart.dto.ReviewDto;
+import umc.springstart.web.dto.ReviewDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +23,7 @@ public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
     @Override
     public List<ReviewDto> findStoreIdAndMemberStatus(Long id, MemberStatus memberStatus) {
         return jpaQueryFactory
-                .select(review.id,store.id, member.id, member.status, review.title, review.createdAt)
+                .select(review.id,store.id, member.id, member.status, review.body, review.createdAt)
                 .from(review)
                 .join(member).on(review.member.id.eq(member.id))
                 .join(store).on(review.store.id.eq(store.id))
@@ -36,7 +36,7 @@ public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
                         tuple.get(store.id),
                         tuple.get(member.id),
                         tuple.get(member.status),
-                        tuple.get(review.title),
+                        tuple.get(review.body),
                         tuple.get(review.createdAt)
                 ))
                 .collect(Collectors.toList());

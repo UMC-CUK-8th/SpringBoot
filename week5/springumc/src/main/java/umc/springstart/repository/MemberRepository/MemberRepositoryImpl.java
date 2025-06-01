@@ -8,7 +8,7 @@ import umc.springstart.domain.QMission;
 import umc.springstart.domain.QStore;
 import umc.springstart.domain.enums.MissionStatus;
 import umc.springstart.domain.mapping.QMemberMission;
-import umc.springstart.dto.MemberMissionDto;
+import umc.springstart.web.dto.MemberMissionDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

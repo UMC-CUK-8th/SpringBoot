@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.springstart.domain.Review;
 import umc.springstart.domain.enums.MemberStatus;
-import umc.springstart.dto.ReviewDto;
+import umc.springstart.web.dto.ReviewDto;
 import umc.springstart.exception.ReviewNotFoundException;
 import umc.springstart.repository.ReviewRepository.ReviewRepository;
 
