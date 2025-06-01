@@ -5,9 +5,6 @@ import umc.springstart.domain.Review;
 import umc.springstart.domain.Store;
 import umc.springstart.web.dto.ReviewDTO.ReviewRequestDTO;
 import umc.springstart.web.dto.ReviewDTO.ReviewResponseDTO;
-import umc.springstart.web.dto.memberDTO.MemberResponseDTO;
-
-import java.time.LocalDateTime;
 
 public class ReviewConverter {
 

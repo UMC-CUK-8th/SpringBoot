@@ -1,11 +1,10 @@
 package umc.springstart.service.MissionService;
 
-import umc.springstart.domain.Mission;
-import umc.springstart.domain.mapping.MemberMission;
 import umc.springstart.web.dto.MissionDTO.MissionRequestDTO;
+import umc.springstart.web.dto.MissionDTO.MissionResponseDTO;
 
 public interface MissionCommandService {
-    MemberMission challengeMission(Long missionId, MissionRequestDTO.ChallengeMissionDTO request);
+    MissionResponseDTO.ChallengeResultDTO challengeMission(Long missionId, MissionRequestDTO.ChallengeMissionDTO request);
 
-    Mission addMission(Long storeId, MissionRequestDTO.AddMissionDTO request);
+    MissionResponseDTO.AddMissionResultDTO addMission(Long storeId, MissionRequestDTO.AddMissionDTO request);
 }

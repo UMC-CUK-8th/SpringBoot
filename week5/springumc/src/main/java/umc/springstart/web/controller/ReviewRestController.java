@@ -22,7 +22,6 @@ public class ReviewRestController {
         this.reviewCommandService = reviewCommandService;
     }
 
-    //리뷰 작성 api
     @PostMapping("/reviews")
     @Operation(summary = "리뷰작성하기", description = "리뷰작성하기")
     public ApiResponse<ReviewResponseDTO.addResultDTO> join(@RequestBody @Valid ReviewRequestDTO.AddReviewDTO reviewReq) {
