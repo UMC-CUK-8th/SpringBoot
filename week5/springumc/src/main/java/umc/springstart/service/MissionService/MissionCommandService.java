@@ -7,4 +7,6 @@ public interface MissionCommandService {
     MissionResponseDTO.ChallengeResultDTO challengeMission(Long missionId, MissionRequestDTO.ChallengeMissionDTO request);
 
     MissionResponseDTO.AddMissionResultDTO addMission(Long storeId, MissionRequestDTO.AddMissionDTO request);
+
+    MissionResponseDTO.CompleMyMissionItemDTO completeMemberMission(Long memberId, Long missionId);
 }

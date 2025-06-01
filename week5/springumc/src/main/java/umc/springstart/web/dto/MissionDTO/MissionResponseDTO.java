@@ -51,5 +51,15 @@ public class MissionResponseDTO {
     public static class MyChallengingMissionListDTO{
         List<MyChallengingMissionItemDTO> missionList;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CompleMyMissionItemDTO {
+        Long memberMissionId;
+        MissionStatus status;
+        LocalDateTime completeAt;
+    }
 }
 
