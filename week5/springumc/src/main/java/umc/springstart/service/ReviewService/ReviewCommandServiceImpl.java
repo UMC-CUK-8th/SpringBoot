@@ -11,6 +11,7 @@ import umc.springstart.repository.MemberRepository.MemberRepository;
 import umc.springstart.repository.ReviewRepository.ReviewRepository;
 import umc.springstart.repository.StoreRepository.StoreRepository;
 import umc.springstart.web.dto.ReviewDTO.ReviewRequestDTO;
+import umc.springstart.web.dto.ReviewDTO.ReviewResponseDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -21,15 +22,17 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
 
     @Override
     @Transactional
-    public Review addReview(ReviewRequestDTO.AddReviewDTO request){
-        Review newReview = ReviewConverter.toReview(request);
+    public ReviewResponseDTO.addResultDTO addReview(ReviewRequestDTO.AddReviewDTO request){
+
         Store store = storeRepository.findById(request.getStoreId()).orElseThrow(() -> new RuntimeException("Store not found with ID: " + request.getStoreId()));
         Member member = memberRepository.findById(request.getMemberId())
                 .orElseThrow(() -> new RuntimeException("Member not found with ID: " + request.getMemberId()));
 
-        newReview.setStore(store);
-        newReview.setMember(member);
-        return reviewRepository.save(newReview);
+        Review newReview = ReviewConverter.toReview(request, store, member);
+
+        Review savedReview = reviewRepository.save(newReview);
+
+        return ReviewConverter.toaddReviewDTO(savedReview);
     }
 
 }
