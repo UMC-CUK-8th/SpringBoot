@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.springstart.converter.StoreConverter;
 import umc.springstart.domain.Review;
 import umc.springstart.domain.Store;
 import umc.springstart.repository.StoreRepository.StoreRepository;
@@ -13,7 +14,7 @@ import umc.springstart.repository.ReviewRepository.ReviewRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
-
+import umc.springstart.web.dto.StoreRequestDTO.StoreResponseDTO;
 
 
 @Service
@@ -39,12 +40,13 @@ public class StoreQueryServiceImpl implements StoreQueryService{
     }
 
     @Override
-    public Page<Review> getReviewList(Long StoreId, Integer page) {
+    public StoreResponseDTO.ReviewPreViewListDTO getReviewList(Long StoreId, Integer page) {
 
-        Store store = storeRepository.findById(StoreId).get();
+        Store store = storeRepository.findById(StoreId)
+                .orElseThrow(() -> new RuntimeException(" 가게id가 잘못되었습니다."));
 
         Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page-1, 10));
-        return StorePage;
+        return StoreConverter.reviewPreViewListDTO(StorePage);
     }
 }
 
