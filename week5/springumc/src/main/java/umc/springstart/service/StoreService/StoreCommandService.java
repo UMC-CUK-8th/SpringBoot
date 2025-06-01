@@ -1,8 +1,8 @@
 package umc.springstart.service.StoreService;
 
-import umc.springstart.domain.Store;
 import umc.springstart.web.dto.StoreRequestDTO.StoreRequestDTO;
+import umc.springstart.web.dto.StoreRequestDTO.StoreResponseDTO;
 
 public interface StoreCommandService {
-    Store addStore(Long regionId, StoreRequestDTO.AddStoreDTO request);
+    StoreResponseDTO.AddStoreResultDTO addStore(Long regionId, StoreRequestDTO.AddStoreDTO request);
 }
