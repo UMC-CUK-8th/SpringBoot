@@ -1,10 +1,12 @@
 package umc.springstart.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.springstart.apiPayload.exception.handler.FoodCategoryHandler;
+import umc.springstart.apiPayload.exception.handler.MemberHandler;
 import umc.springstart.converter.MemberConverter;
 import umc.springstart.converter.MemberPreferConverter;
 import umc.springstart.domain.FoodCategory;
@@ -15,7 +17,8 @@ import umc.springstart.repository.MemberRepository.MemberRepository;
 import umc.springstart.web.dto.memberDTO.MemberRequestDTO;
 import umc.springstart.apiPayload.code.status.ErrorStatus;
 import umc.springstart.web.dto.memberDTO.MemberResponseDTO;
-
+import umc.springstart.config.security.jwt.JwtTokenProvider;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +29,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
 
     @Override
@@ -48,4 +52,25 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     }
 
 
+    @Override
+    public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request) {
+        Member member = memberRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+
+        if(!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
+            throw new MemberHandler(ErrorStatus.INVALID_PASSWORD);
+        }
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                member.getEmail(), null ,
+                Collections.singleton(() -> member.getRole().name())
+        );
+
+        String accessToken = jwtTokenProvider.generateToken(authentication);
+
+        return MemberConverter.toLoginResultDTO(
+                member.getId(),
+                accessToken
+        );
+    }
 }

@@ -4,6 +4,7 @@ import umc.springstart.domain.Member;
 import umc.springstart.domain.enums.Gender;
 import umc.springstart.web.dto.memberDTO.MemberRequestDTO;
 import umc.springstart.web.dto.memberDTO.MemberResponseDTO;
+import umc.springstart.web.dto.memberDTO.MemberResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -42,6 +43,21 @@ public class MemberConverter {
                 .name(request.getName())
                 .role(request.getRole())
                 .memberPreferList(new ArrayList<>())
+                .build();
+    }
+
+    public static MemberResponseDTO.LoginResultDTO toLoginResultDTO(Long memberId, String accessToken) {
+        return MemberResponseDTO.LoginResultDTO.builder()
+                .memberId(memberId)
+                .accessToken(accessToken)
+                .build();
+    }
+
+    public static MemberResponseDTO.MemberInfoDTO toMemberInfoDTO(Member member) {
+        return MemberResponseDTO.MemberInfoDTO.builder()
+                .name(member.getName())
+                .email(member.getEmail())
+                .gender(member.getGender().name())
                 .build();
     }
 }
