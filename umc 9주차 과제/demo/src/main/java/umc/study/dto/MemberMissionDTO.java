@@ -8,6 +8,7 @@ import umc.study.domain.enums.Status;
 import umc.study.domain.mapping.MemberMission;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -35,6 +36,33 @@ public class MemberMissionDTO{
                 .createdAt(memberMission.getCreatedAt())
                 .updatedAt(memberMission.getUpdatedAt())
                 .build();
+    }
+
+
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ProgessMisssionPreviewDTOList {
+        private List<ProgressMissionPreviewDTO> progressMissionList;
+        private Integer totalPages;
+        private Long totalElements;
+        private Boolean isFirst;
+        private Boolean isLast;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ProgressMissionPreviewDTO {
+        private Long missionId;
+        private String missionName;
+        private String description;
+        private Integer repair;
+        private Status status;
+        private LocalDateTime createdAt;
+
     }
 
 }

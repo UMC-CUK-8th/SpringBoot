@@ -33,6 +33,11 @@ public enum ErrorStatus implements BaseErrorCode {
     MARKET_NOT_FOUND(HttpStatus.NOT_FOUND, "MARKET4001", "존재하지 않는 가게입니다."),
     MISSION_NOT_BELONG_TO_MARKET(HttpStatus.BAD_REQUEST,"MARKET4001", "이 미션과 가게가 일치하지 않습니다."),
 
+    // 페이지 관련 에러
+
+    PAGE_NUMBER_INVALID(HttpStatus.BAD_REQUEST, "PAGE4001","페이지 번호는 1 이상이어야 합니다, "),
+    PAGE_NUMBER_FORMAT_INVALID(HttpStatus.BAD_REQUEST, "PAGE4002","페이지 번호 형식이 이상합니다. "),
+
     // 예시
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 
