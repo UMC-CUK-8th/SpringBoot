@@ -8,13 +8,16 @@ import umc.springstart.converter.StoreMissionConverter;
 import umc.springstart.domain.Member;
 import umc.springstart.domain.Mission;
 import umc.springstart.domain.Store;
+import umc.springstart.domain.enums.MissionStatus;
 import umc.springstart.domain.mapping.MemberMission;
+import umc.springstart.exception.MemberMissionNotFoundException;
 import umc.springstart.repository.MemberRepository.MemberRepository;
 import umc.springstart.repository.MissionRepository.MissionRepository;
 import umc.springstart.web.dto.MissionDTO.MissionRequestDTO;
 import umc.springstart.repository.MissionRepository.MemberMissionRepository;
 import umc.springstart.repository.StoreRepository.StoreRepository;
 import umc.springstart.web.dto.MissionDTO.MissionResponseDTO;
+import umc.springstart.apiPayload.code.status.ErrorStatus;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +50,17 @@ public class MissionCommandServiceImpl implements MissionCommandService {
         Mission newMission = StoreMissionConverter.toMission(addmissionReq, store);
         Mission savedMission = missionRepository.save(newMission);
         return StoreMissionConverter.toAddMissionResultDTO(savedMission);
+    }
+
+    @Override
+    @Transactional
+    public MissionResponseDTO.CompleMyMissionItemDTO completeMemberMission(Long memberId, Long missionId){
+        MemberMission memberMission = memberMissionRepository.findByMemberIdAndMissionIdAndStatus(memberId, missionId, MissionStatus.CHALLENGING)
+                .orElseThrow(() -> new MemberMissionNotFoundException(ErrorStatus.MEMBER_MISSION_NOT_FOUND));
+
+        memberMission.setStatus(MissionStatus.COMPLETE);
+
+        return MemberMissionConverter.toCompleMyMissionItemDTO(memberMission);
     }
 
 }

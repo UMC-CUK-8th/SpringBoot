@@ -1,11 +1,15 @@
 package umc.springstart.converter;
 
+import org.springframework.data.domain.Page;
 import umc.springstart.domain.Member;
 import umc.springstart.domain.Mission;
 import umc.springstart.domain.enums.MissionStatus;
 import umc.springstart.domain.mapping.MemberMission;
 import umc.springstart.web.dto.MissionDTO.MissionRequestDTO;
 import umc.springstart.web.dto.MissionDTO.MissionResponseDTO;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MemberMissionConverter {
 
@@ -35,5 +39,36 @@ public class MemberMissionConverter {
         return memberMission;
     }
 
+    public static MissionResponseDTO.MyChallengingMissionItemDTO toMyChallengingMissionItemDTO(MemberMission memberMission) {
+        Mission mission = memberMission.getMission();
+        String storeName = (mission.getStore() != null) ? mission.getStore().getName() : "N/A";
+
+        return MissionResponseDTO.MyChallengingMissionItemDTO.builder()
+                .missionId(mission.getId())
+                .reward(mission.getReward())
+                .deadline(mission.getDeadline())
+                .storeName(storeName)
+                .missionSpec(mission.getMissionSpec())
+                .build();
+    }
+
+    public static MissionResponseDTO.MyChallengingMissionListDTO toMyChallengingMissionListDTO(Page<MemberMission> memberMissionPage) {
+
+        List<MissionResponseDTO.MyChallengingMissionItemDTO> missionItemDTOList = memberMissionPage.stream()
+                .map(MemberMissionConverter::toMyChallengingMissionItemDTO)
+                .collect(Collectors.toList());
+
+        return MissionResponseDTO.MyChallengingMissionListDTO.builder()
+                .missionList(missionItemDTOList)
+                .build();
+    }
+
+    public static MissionResponseDTO.CompleMyMissionItemDTO toCompleMyMissionItemDTO(MemberMission memberMission) {
+        return MissionResponseDTO.CompleMyMissionItemDTO.builder()
+                .memberMissionId(memberMission.getId())
+                .status(memberMission.getStatus())
+                .completeAt(memberMission.getUpdatedAt())
+                .build();
+    }
 
 }
