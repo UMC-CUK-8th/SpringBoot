@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/todayharu    #로컬에서 spring앱실행, 도커에서 mysql실행시
+    username: root
+    password: 1225
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  security:
+    oauth2:
+      client:
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize  //인가 코드 발급
+            token-uri: https://kauth.kakao.com/oauth/token    //토큰 발급
+            user-info-uri: https://kapi.kakao.com/v2/user/me  //사용자 정보 가져오기
+            user-name-attribute: id
+        registration:
+          kakao:
+            client-id: 0e3d9c0065c1c586cf1656d00679b79a
+            client-secret: oh28KGTcnGVGvgOAXRoQHmTKXEXjCMFX
+            client-authentication-method: client_secret_post
+            redirect-uri: http://localhost:8080/api/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-name: kakao
+            scope:
+              - profile_nickname
+
+      resourceserver:
+
+app:
+  jwt:
+    secretKey: b384f8e1b652802e5c5696aeb0c899b598cd3928a6581bc59db9146869d8717545bb749c6b74c4552748c48d635ab059cb035ea3f62b6b1e4f59ac6350af7953

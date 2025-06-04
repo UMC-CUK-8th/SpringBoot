@@ -1,0 +1,55 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.9'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.projectlombok:lombok:1.18.28'
+
+//	implementation 'mysql:mysql-connector-java:8.0.33'
+	//어노테이션프로세서
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+	//jwtutil 의존성 주입 오류 해결	//api의 구현체 impl
+	implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
+	//jjwt 라이브러리에 JSON 직렬화를 위한 구현체를 제공
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	//jsoup 의존성 추가
+	implementation 'org.jsoup:jsoup:1.15.3'
+	//selenium
+	//implementation 'org.seleniumhq.selenium:selenium-java:4.6.0'
+
+	//swagger
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+}
+
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

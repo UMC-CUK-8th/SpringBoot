@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  spring-app:
+    image: lsw71311/today_haru:latest
+    container_name: today_haru
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/todayharu  #docker 네트워크 내부에서 실행할떈 3306 포트 / application.yml은 도커 밖 로컬 설정이므로 3307로 설정
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1225
+
+  mysql:
+    image: mysql:8.0  # MySQL 8.0 버전 사용
+    restart: always
+    container_name: mysql  # 컨테이너 이름 변경
+    ports:
+      - "3307:3306"  # 호스트 포트와 컨테이너 포트 매핑
+    environment:
+      MYSQL_ROOT_PASSWORD: 1225  # MySQL root 사용자 비밀번호
+      MYSQL_DATABASE: todayharu  # 초기 데이터베이스 이름
+    volumes:
+      - ./data/mysql/:/var/lib/mysql  # 로컬 데이터를 MySQL 컨테이너에 저장
