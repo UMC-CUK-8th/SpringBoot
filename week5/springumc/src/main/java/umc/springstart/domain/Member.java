@@ -6,6 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import umc.springstart.domain.common.BaseEntity;
 import umc.springstart.domain.enums.Gender;
 import umc.springstart.domain.enums.MemberStatus;
+import umc.springstart.domain.enums.Role;
 import umc.springstart.domain.enums.SocialType;
 import umc.springstart.domain.mapping.MemberAgree;
 import umc.springstart.domain.mapping.MemberMission;
@@ -47,8 +48,14 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    // @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @ColumnDefault("0")
     private Integer point;
@@ -64,4 +71,8 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
 }
