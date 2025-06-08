@@ -8,7 +8,7 @@ import umcstudy.validation.annotation.ExistLocation;
 public class StoreRequestDTO {
 
     @Getter
-    public static class JoinDto{
+    public static class StoJoinDto{
         @NotBlank
         String storename;
         @NotBlank

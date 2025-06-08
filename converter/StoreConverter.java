@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 
 public class StoreConverter {
 
-    public static StoreResponseDTO.JoinResultDTO toJoinResultDTO(Store store) {
-        return StoreResponseDTO.JoinResultDTO.builder()
+    public static StoreResponseDTO.StoJoinResultDTO toJoinResultDTO(Store store) {
+        return StoreResponseDTO.StoJoinResultDTO.builder()
                 .storeId(store.getId())
                 .createdAt(LocalDateTime.now())
                 .build();
     }
 
-    public static Store toStore(StoreRequestDTO.JoinDto request, Location location) {
+    public static Store toStore(StoreRequestDTO.StoJoinDto request, Location location) {
 
         return Store.builder()
                 .storename(request.getStorename())
