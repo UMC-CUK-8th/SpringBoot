@@ -74,4 +74,25 @@ public class MemberResponseDTO {
         int reward;
         LocalDate createdAt;
     }
+
+//로그인을 위한 정보를 입력받고, 반환해주는 dto
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LoginResultDTO {
+        Long memberId;
+        String accessToken;
+    }
+
+    //사용자 정보 중 이름, 이메일, 성별을 조회할 수 있는 DTO
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberInfoDTO{
+        String name;
+        String email;
+        String gender;
+    }
 }

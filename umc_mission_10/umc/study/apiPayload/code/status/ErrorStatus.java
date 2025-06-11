@@ -30,10 +30,15 @@ public enum ErrorStatus implements BaseErrorCode {
     ALREADY_CHALLENGED(HttpStatus.BAD_REQUEST,"USERMISSIONPOINTCOUNTER4001","이미 도전중인 미션입니다."),
     REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND,"REVIEW4001", "해당 리뷰가 없습니다."),
 
+    //login
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED,"LOGIN4002","비밀번호가 틀렸습니다."),
+
+    //token
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED,"LOGIN4001","토큰관련 문제입니다."),
+
     //Page
     INVALID_PAGE_NUMBER(HttpStatus.BAD_REQUEST, "COMMON_001", "page는 1 이상이어야 합니다.");
 
-    ;
 
     private final HttpStatus httpStatus;
     private final String code;

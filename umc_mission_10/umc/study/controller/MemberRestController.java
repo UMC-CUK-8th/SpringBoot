@@ -7,11 +7,11 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
@@ -35,45 +35,12 @@ public class MemberRestController {
     private final MemberQueryService memberQueryService;
     private final MemberCommandService memberCommandService;
 
-    @PostMapping("/")
+    @PostMapping("/join")
+    @Operation(summary = "유저 회원가입 API",description = "유저가 회원가입하는 API입니다.")
     public ApiResponse<MemberResponseDTO.JoinResultDTO> join(@RequestBody @Valid MemberRequestDTO.JoinDto request){
         Member member = memberCommandService.joinMember(request);
         return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
     }
-
-    @PostMapping("/members/signup")
-    public String joinMember(@ModelAttribute("memberJoinDto") MemberRequestDTO.JoinDto request, // 협업시에는 기존 RequestBody 어노테이션을 붙여주시면 됩니다!
-                             BindingResult bindingResult,
-                             Model model) {
-
-        if (bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(error -> {
-                System.out.println("에러: " + error.getDefaultMessage());
-            });
-            model.addAttribute("memberJoinDto", request);
-            return "signup";
-        }
-
-        if (bindingResult.hasErrors()) {
-            // 뷰에 데이터 바인딩이 실패할 경우 signup 페이지를 유지합니다.
-            model.addAttribute("memberJoinDto", request);  // 폼 데이터를 다시 뷰에 전달
-            return "signup";
-        }
-
-
-        try {
-            memberCommandService.joinMember(request);
-            return "redirect:/login";
-        } catch (Exception e) {
-            // 회원가입 과정에서 에러가 발생할 경우 에러 메시지를 보내고, signup 페이디를 유지합니다.
-            e.printStackTrace(); // 로그 찍기
-            model.addAttribute("error", e.getMessage());
-            model.addAttribute("memberJoinDto", request);  // 에러 시에도 폼 데이터 유지
-            return "signup";
-        }
-
-    }
-
 
     @GetMapping("/{memberId}/reviews")
     @Operation(summary = "특정 회원의 리뷰 목록 조회 API",description = "특정 회원의 리뷰들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
@@ -118,4 +85,24 @@ public class MemberRestController {
         return ApiResponse.onSuccess(MemberConverter.challengingMissionPreViewListDTO(challengingMissionList));
     }
 
+    @PostMapping("/login")
+    @Operation(summary = "유저 로그인 API",description = "유저가 로그인하는 API입니다.")
+    public ApiResponse<MemberResponseDTO.LoginResultDTO> login(@RequestBody @Valid MemberRequestDTO.LoginRequestDTO request) {
+        return ApiResponse.onSuccess(memberCommandService.loginMember(request));
+
+
+    }
+
+    @GetMapping("/info")
+    @Operation(summary = "유저 내 정보 조회 API - 인증 필요",
+            description = "유저가 내 정보를 조회하는 API입니다.",
+            security = { @SecurityRequirement(name = "JWT TOKEN") }
+    )
+    public ApiResponse<MemberResponseDTO.MemberInfoDTO> getMyInfo(HttpServletRequest request) {
+        return ApiResponse.onSuccess(memberQueryService.getMemberInfo(request));
+    }
+
+
+
 }
+
