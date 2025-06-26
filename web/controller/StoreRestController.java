@@ -34,8 +34,8 @@ public class StoreRestController {
     private final StoreCommandService storeCommandService;
 
     @PostMapping("/")
-    public ApiResponse<StoreResponseDTO.JoinResultDTO> register(@RequestBody @Valid StoreRequestDTO.JoinDto request) {
-        StoreResponseDTO.JoinResultDTO StoresponseDto = storeCommandService.registerStore(request);
+    public ApiResponse<StoreResponseDTO.StoJoinResultDTO> register(@RequestBody @Valid StoreRequestDTO.StoJoinDto request) {
+        StoreResponseDTO.StoJoinResultDTO StoresponseDto = storeCommandService.registerStore(request);
 
         return ApiResponse.onSuccess(StoresponseDto);
     }

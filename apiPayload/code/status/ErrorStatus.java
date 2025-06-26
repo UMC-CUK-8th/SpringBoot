@@ -16,7 +16,7 @@ public enum ErrorStatus implements BaseErrorCode {
     _UNAUTHORIZED(HttpStatus.UNAUTHORIZED,"COMMON401","인증이 필요합니다."),
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
     // 멤버 관려 에러
-    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
+    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "해당 사용자가 존재하지 않습니다."),
     NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
     // 예시,,,
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
@@ -26,7 +26,10 @@ public enum ErrorStatus implements BaseErrorCode {
     STORE_NOT_FOUND(HttpStatus.BAD_REQUEST,"STORE4001","해당 가게가 존재하지 않습니다."),
     MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST,"MISSION4001","해당 미션가 존재하지 않습니다."),
     STOREMISSION_NOT_FOUND(HttpStatus.BAD_REQUEST,"USERMISSION4001","해당가게에 미션이 존재하지 않습니다."),
-    NOTVISITEDMISSION_NOT_FOUND(HttpStatus.BAD_REQUEST,"USERMISSION4002","미션이 완료되었거나 진행중입니다");
+    NOTVISITEDMISSION_NOT_FOUND(HttpStatus.BAD_REQUEST,"USERMISSION4002","미션이 완료되었거나 진행중입니다"),
+    PAGE_NOT_FOUND(HttpStatus.BAD_REQUEST,"PAGE4001","페이지는 '1' 이상 입력해야합니다."),
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED,"COMMON401","인증이 필요합니다"),
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED,"PASSWORD4001","비밀번호가 일치하지 않습니다.");
 
 
 
